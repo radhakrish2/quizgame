@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface GameQuestionRepository extends JpaRepository<GameQuestion, Long> {
     List<GameQuestion> findByGameSessionId(Long gameSessionId);
+    Long countByGameSessionId(Long sessionId);
 }

@@ -29,6 +29,6 @@ public class GameQuestion {
     @ManyToOne
     private Question question;
 
-    private int orderIndex;
+    private Long orderIndex;
     private LocalDateTime askedAt;
 }
