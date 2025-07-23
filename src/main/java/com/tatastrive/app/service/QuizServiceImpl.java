@@ -28,18 +28,23 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public QuizDTO createQuiz(QuizDTO quizDTO) {
+        // Convert DTO to Entity
         Quiz quiz = modelMapper.map(quizDTO, Quiz.class);
 
+        // Set createdBy manually using creatorId
         if (quizDTO.getCreatorId() != null) {
             User creator = userRepository.findById(quizDTO.getCreatorId())
                     .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + quizDTO.getCreatorId()));
             quiz.setCreatedBy(creator);
         }
 
+        // Save Quiz Entity
         Quiz savedQuiz = quizRepository.save(quiz);
+
+        // Convert back Entity to DTO (creatorId will be set by modelMapper config)
         return modelMapper.map(savedQuiz, QuizDTO.class);
     }
-
+    
     @Override
     public QuizDTO getQuizById(Long id) {
         Quiz quiz = quizRepository.findById(id)

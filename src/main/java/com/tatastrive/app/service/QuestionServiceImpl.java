@@ -1,6 +1,7 @@
 package com.tatastrive.app.service;
 
 import com.tatastrive.app.dto.QuestionDTO;
+import com.tatastrive.app.entity.Option;
 import com.tatastrive.app.entity.Question;
 import com.tatastrive.app.entity.Quiz;
 import com.tatastrive.app.exception.ResourceNotFoundException;
@@ -33,6 +34,13 @@ public class QuestionServiceImpl implements QuestionService {
 
         Question question = modelMapper.map(questionDTO, Question.class);
         question.setQuiz(quiz);
+
+        // Important: set the `question` reference in each Option
+        if (question.getOptions() != null) {
+            for (Option option : question.getOptions()) {
+                option.setQuestion(question);
+            }
+        }
 
         Question savedQuestion = questionRepository.save(question);
         return modelMapper.map(savedQuestion, QuestionDTO.class);
