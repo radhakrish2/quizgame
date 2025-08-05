@@ -38,6 +38,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
+                //to ignore authentication.
                 .requestMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
             );

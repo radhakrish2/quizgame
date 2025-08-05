@@ -50,4 +50,5 @@ public class GameSessionController {
         gameSessionService.endSession(sessionId);
         return ResponseEntity.noContent().build();
     }
+    
 }

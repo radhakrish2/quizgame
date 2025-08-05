@@ -90,4 +90,8 @@ public class GameSessionServiceImpl implements GameSessionService {
         session.setActive(false);
         gameSessionRepository.save(session);
     }
+    
+    
+    
+    
 }

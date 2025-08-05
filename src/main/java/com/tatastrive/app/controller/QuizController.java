@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/quizzes")
+@CrossOrigin("*")
 public class QuizController {
 
     @Autowired
@@ -30,6 +31,7 @@ public class QuizController {
      * Get quiz by ID
      */
     @GetMapping("/{id}")
+    
     public ResponseEntity<ApiResponse<QuizDTO>> getQuizById(@PathVariable Long id) {
         QuizDTO quiz = quizService.getQuizById(id);
         return ResponseEntity.ok(new ApiResponse<>(true, "Quiz found", quiz));

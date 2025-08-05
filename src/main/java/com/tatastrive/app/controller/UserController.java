@@ -1,6 +1,7 @@
 package com.tatastrive.app.controller;
 
 import com.tatastrive.app.dto.UserDTO;
+import com.tatastrive.app.repository.UserRepository;
 import com.tatastrive.app.response.ApiResponse;
 import com.tatastrive.app.service.UserService;
 
@@ -9,16 +10,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private UserRepository userRep;
+    
+    @GetMapping("get")
+    public List<UserDTO> getAllUser()
+    {
+    	 List<UserDTO> users = userService.getAllUsers();
+    	 
+    	 return users;
+    }
 
     // Create new user
     @PostMapping

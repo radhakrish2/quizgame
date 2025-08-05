@@ -12,4 +12,5 @@ public interface GameSessionService {
     GameSessionDTO getSessionByCode(String sessionCode);
     List<GameSessionDTO> getSessionsByHost(Long hostId);
     void endSession(Long sessionId);
+   
 }

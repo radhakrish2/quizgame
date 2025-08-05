@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.Map;
 
 @Component
 public class JwtUtil {
@@ -15,6 +16,8 @@ public class JwtUtil {
     private final long EXPIRATION_TIME = 1000 * 60 * 60 * 10; // 10 hours
 
     private Key getSigningKey() {
+    	
+        	
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
 
